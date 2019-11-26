@@ -10,7 +10,18 @@ const controller =
     
     detalle:(req,res)=>
     {
-        res.send();
+
+        let heroe = heroes.filter(h => h.id == req.params.id).pop();
+        console.log(typeof heroe);
+        if (heroe == undefined)
+        {
+            res.send("Heroe no encontrado");
+        }
+        else{
+            let detalle = "Hola, mi nombre es: " + heroe.nombre + "y soy: "+ heroe.profesion;
+            res.send(detalle);
+        }
+
     },
     detalleBio: (req,res)=>
     {
