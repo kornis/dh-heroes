@@ -13,8 +13,18 @@ const controller =
         res.send();
     },
     detalleBio: (req,res)=>
-    {
-        res.send();
+    {   
+        if(req.params.ok){
+            if(req.params.id > heroes.length){
+                var detalleBio = 'No encontramos un héroe :(';
+            } else {
+                var detalleBio = '<h1>'+heroes[req.params.id - 1].nombre + '</h1><br><br>';
+                detalleBio += heroes[req.params.id - 1].resenia;
+            }
+        } else {
+            var detalleBio = req.params.id > heroes.length ? 'No encontramos un héroe :(' : heroes[req.params.id - 1].nombre+' Lamento que no desees saber más de mi';
+        }
+        res.send(detalleBio);
     }
 };
 
